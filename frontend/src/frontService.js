@@ -13,7 +13,7 @@ async function sendImg(img){
 
     let imgObj ={img: img}
     
-    var res = await axios.post(`http://localhost:3001/scan`, imgObj);
+    var res = await axios.post(`${url}/scan`, imgObj);
 
     console.log(res.data);
     

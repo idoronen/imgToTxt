@@ -18,7 +18,7 @@ const fs = require('fs');
 
 
 
-app.post('/scan', async (req, res)=>{
+app.post('/imgToTxt/scan', async (req, res)=>{
     console.log('server /scan');
     // console.log(req.body.img);
     const words = await sendToGoogle(req.body.img);

@@ -4,7 +4,7 @@ export default{
     sendImg
 }
 
-const url = (process.env.NODE_ENV === 'development')? 'http://localhost:3001': '';
+const url = (process.env.NODE_ENV === 'development')? 'http://localhost:3001': 'imgToTxt';
 console.log('url:',url);
 
 
@@ -13,7 +13,7 @@ async function sendImg(img){
 
     let imgObj ={img: img}
     
-    var res = await axios.post(`/scan`, imgObj);
+    var res = await axios.post(`${url}/scan`, imgObj);
 
     console.log(res.data);
     

@@ -2,9 +2,9 @@ const express = require('express')
 const app = express()
 const http = require('http').createServer(app);
 const cors = require('cors');
-// const origin = (process.env.NODE_ENV === 'development')? 'http://localhost:3000': '/';
+const origin = (process.env.NODE_ENV === 'development')? 'http://localhost:3000': '';
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: origin,
     credentials: true
 };
 app.use(cors(corsOptions));

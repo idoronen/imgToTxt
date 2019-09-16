@@ -3,6 +3,7 @@ const app = express()
 const http = require('http').createServer(app);
 const cors = require('cors');
 // const origin = (process.env.NODE_ENV === 'development')? 'http://localhost:3000': '';
+const path = require('path');
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -10,7 +11,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json({limit: '50mb'}));
-// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
 const vision = require('@google-cloud/vision');
 const fs = require('fs');
 
@@ -59,6 +61,10 @@ async function sendToGoogle(img){
     // console.log(text);
     return text 
 }
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/frontend/index.html'));
+  });
 
 const port = process.env.PORT || 3001 ;
 

@@ -21,10 +21,11 @@ const fs = require('fs');
 app.post('/imgToTxt/scan', async (req, res)=>{
     console.log('server /scan');
     // console.log(req.body.img);
-    const words = await sendToGoogle(req.body.img);
+    // const words = await sendToGoogle(req.body.img);
     // console.log(words);
     
-    res.send(words);
+    // res.send(words);
+    res.send('ok')
     
 })
 

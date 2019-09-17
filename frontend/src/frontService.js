@@ -4,7 +4,7 @@ export default{
     sendImg
 }
 
-const url = (process.env.NODE_ENV === 'development')? 'http://localhost:3001': 'imgToTxt';
+const url = (process.env.NODE_ENV === 'development')? 'http://localhost:3001': '';
 console.log('url:',url);
 
 

@@ -4,9 +4,11 @@ const http = require('http').createServer(app);
 const cors = require('cors');
 const origin = (process.env.NODE_ENV === 'development')? 'http://localhost:3000': '';
 const path = require('path');
+const axios = require('axios');
+
 
 const corsOptions = {
-    origin: origin,
+    origin: 'http://localhost:3000',
     credentials: true
 };
 app.use(cors(corsOptions));
@@ -18,18 +20,63 @@ const fs = require('fs');
 
 
 
-app.post('/imgToTxt/scan', async (req, res)=>{
+app.post('/scan', async (req, res)=>{
     console.log('server /scan');
     // console.log(req.body.img);
     // const words = await sendToGoogle(req.body.img);
+    const words = await google(req.body.img);
+
     // console.log(words);
     
-    // res.send(words);
-    res.send('ok')
+    res.send(words);
+    // res.send('ok')
     
 })
 
+async function google(img){
+    //AIzaSyAnr7KLw2e2JzEPy_kEvGJXDE90adQHI0A
+    // console.log('google function',img);
+
+    var base64Data = img.replace(/^data:image\/png;base64,/, "");
+    
+
+    const objToSend={
+        "requests":[
+            {
+              "image":{
+                // "source":{
+                //     "imageUri":
+                //       "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                //   }
+                "content": base64Data
+              },
+              "features":[
+                {
+                  "type":"TEXT_DETECTION"
+                }
+              ]
+            }
+          ]
+    }
+
+    try{
+        const result = await axios.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAnr7KLw2e2JzEPy_kEvGJXDE90adQHI0A', objToSend)
+        // console.log(result.data.responses[0].textAnnotations);
+        // console.log(result.data.responses[0].fullTextAnnotation.text);
+
+        var text = result.data.responses[0].fullTextAnnotation.text;
+
+    }catch(err){
+        console.log('google said:',err);
+        return 'no text'
+    }
+
+    return text
+    
+}
+
 async function sendToGoogle(img){
+
     // console.log('function sendImg');
     
     const client = new vision.ImageAnnotatorClient();

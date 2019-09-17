@@ -5,17 +5,17 @@ export default{
 }
 
 const url = (process.env.NODE_ENV === 'development')? 'http://localhost:3001': '';
-console.log('url:',url);
+// console.log('url:',url);
 
 
 async function sendImg(img){
-    console.log('service send img');
+    // console.log('service send img');
 
     let imgObj ={img: img}
     
     var res = await axios.post(`${url}/scan`, imgObj);
 
-    console.log(res.data);
+    // console.log(res.data);
     
     return res.data
 }

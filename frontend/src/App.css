@@ -45,3 +45,7 @@
   position: absolute;
   left:-99999px;
 }
+
+video{
+  width: 100%;
+}

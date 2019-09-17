@@ -39,15 +39,10 @@ async function google(img){
 
     var base64Data = img.replace(/^data:image\/png;base64,/, "");
     
-
     const objToSend={
         "requests":[
             {
               "image":{
-                // "source":{
-                //     "imageUri":
-                //       "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-                //   }
                 "content": base64Data
               },
               "features":[

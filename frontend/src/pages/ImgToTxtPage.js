@@ -13,10 +13,8 @@ class ImgToTxtPage extends React.Component{
 
             (async () => {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: true
-                    ,facingMode: {
-                        exact: 'user'
-                    }
+                    video: true,
+                    facingMode: 'environment'
                 })
                 this.video.srcObject = stream;
     

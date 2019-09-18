@@ -8,8 +8,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">    
-      <h2>image</h2>
-      <img src={'./images/cam.jpg'} className="camera-btn"/>
+      {/* <img src={require('./images/cam.jpg')} className="camera-btn"/> */}
 
       <ImgToTxtPage></ImgToTxtPage>  
 

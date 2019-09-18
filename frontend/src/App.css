@@ -8,10 +8,7 @@
 }
 
 .screenshot-img{
-  position: relative;
-  bottom: 50px;
   height: 150px;
-
 }
 
 .textarea{
@@ -19,6 +16,24 @@
   left:-99999px;
 }
 
+.video-cont{
+  position: relative;
+  height: auto;
+}
+
 video{
   width: 100%;
+}
+
+.camera-btn{
+  height: 50px;
+  position: relative;
+  bottom: 70px;
+  cursor: pointer;
+
+}
+
+.test{
+  position: relative;
+  bottom: 70px;
 }

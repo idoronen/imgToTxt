@@ -1,5 +1,6 @@
 import React from 'react';
 import frontService from './frontService'
+import camImg from './images/cam3.png'
 
 class ImgToTxtPage extends React.Component{
 
@@ -24,13 +25,16 @@ class ImgToTxtPage extends React.Component{
 
     doScreenshot =()=>{
         // console.log('do screen');
-        this.video.classList.add('hide');
-        document.querySelector('.screenshot-btn').classList.add('hide');
+        document.querySelector('.video-cont').classList.add('hide');
+        // document.querySelector('.screenshot-btn').classList.add('hide');
 
         this.canvas.width = this.video.videoWidth;
         this.canvas.height = this.video.videoHeight;
         this.canvas.getContext('2d').drawImage(this.video, 0, 0);
         this.screenshotImage.src = this.canvas.toDataURL('image/png');
+        this.screenshotImage.classList.remove('hide');
+        document.querySelector('.copy-btn').classList.remove('hide');
+        document.querySelector('.text-p').classList.remove('hide');
 
         this.sendImg();
     }
@@ -60,18 +64,20 @@ class ImgToTxtPage extends React.Component{
         return (
             <div className="img-to-txt-page">
 
-                <video autoPlay></video>
-                <img className="screenshot-img"/>
-                <br/>
+                <div className="video-cont">
+                    <video autoPlay></video>
+                    <img src={camImg} className="camera-btn" onClick={this.doScreenshot}/>
+                </div>
+                {/* <button className="screenshot-btn" onClick={this.doScreenshot}>screen shot</button> */}
 
-                <button className="screenshot-btn" onClick={this.doScreenshot}>screen shot</button>
-                <img src={'./cam1.jpeg'} className="camera-btn"/>
+                <img className="screenshot-img hide"/>
+                <p id="text" className="text-p hide" contentEditable></p>
+                <button onClick={this.copyText} className="copy-btn hide"> copy</button>
+
 
                 <canvas hidden></canvas>
                 <textarea className="textarea"></textarea>
-                <p id="text" contentEditable></p>
-                <button onClick={this.copyText}> copy</button>
-
+                
             </div>
         )
             

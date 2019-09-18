@@ -1,5 +1,5 @@
 import React from 'react';
-import frontService from './../frontService'
+import frontService from './frontService'
 
 class ImgToTxtPage extends React.Component{
 
@@ -13,7 +13,7 @@ class ImgToTxtPage extends React.Component{
 
             (async () => {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: { exact: "environment" } }
+                    video: { facingMode: { ideal: "environment" } }
                 })
                 this.video.srcObject = stream;
     
@@ -59,10 +59,13 @@ class ImgToTxtPage extends React.Component{
     render(){
         return (
             <div className="img-to-txt-page">
-                <video autoPlay controls></video>
+
+                <video autoPlay></video>
                 <img className="screenshot-img"/>
                 <br/>
+
                 <button className="screenshot-btn" onClick={this.doScreenshot}>screen shot</button>
+                <img src={'./cam1.jpeg'} className="camera-btn"/>
 
                 <canvas hidden></canvas>
                 <textarea className="textarea"></textarea>
@@ -75,5 +78,6 @@ class ImgToTxtPage extends React.Component{
         
     }
 }
+
 
 export default ImgToTxtPage
